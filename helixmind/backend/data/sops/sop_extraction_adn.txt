@@ -1,0 +1,13 @@
+SOP-001 : Extraction d'ADN à partir de sang total
+Objectif : Extraire de l'ADN de haute qualité à partir d'échantillons de sang total.
+Matériel requis : Kit QIAamp DNA Blood Mini, centrifugeuse, bain-marie 56°C.
+Protocole :
+1. Pipeter 200 µL de sang dans un tube de 1.5 mL.
+2. Ajouter 20 µL de protéinase K et 200 µL de Buffer AL.
+3. Incuber 10 min à 56°C. C'est la température critique.
+4. Ajouter 200 µL d'éthanol 96%, vortexer 15 secondes.
+5. Centrifuger 6000 rpm / 1 min.
+6. Laver avec Buffer AW1 puis AW2.
+7. Éluer avec 100 µL de Buffer AE.
+Critères qualité : Ratio A260/A280 entre 1.8 et 2.0.
+Concentration minimale : 20 ng/µL. Stockage à -20°C.
