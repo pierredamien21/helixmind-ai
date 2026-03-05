@@ -1,0 +1,14 @@
+# Variables d'environnement
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# ChromaDB - généré automatiquement au démarrage
+helixmind/backend/data/chroma_db/
+
+# Données brutes et traitées
+helixmind/backend/data/raw/
+helixmind/backend/data/processed/
