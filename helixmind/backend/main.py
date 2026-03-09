@@ -13,6 +13,8 @@ from rag.retriever import ask
 from rag.ingestor import ingest_documents
 from pipeline.tasks import run_pipeline, get_job_status
 
+# Ajoute ces imports en haut de main.py
+from fastapi.middleware.cors import CORSMiddleware
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 Démarrage HelixMind AI...")
@@ -26,6 +28,15 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # En production, mettre l'URL exacte du frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # ── MODÈLES ──
 class ChatRequest(BaseModel):
