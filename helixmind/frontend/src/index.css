@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-primary: #050A14;
+  --bg-secondary: #0A1628;
+  --bg-card: #0D1F3C;
+  --cyan: #00D4FF;
+  --green: #00FF88;
+  --red: #FF4444;
+  --orange: #FF8C00;
+  --text-primary: #E8F4FF;
+  --text-muted: #4A7A9B;
+  --border: #1A3A5C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Grille de points en background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(circle, #1A3A5C 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow effect */
+.glow { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+.glow-green { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
