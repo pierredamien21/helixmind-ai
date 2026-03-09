@@ -1,0 +1,52 @@
+SOP-008 : Sécurité en Laboratoire de Biologie Moléculaire
+Version : 4.0 | Référence : WHO Laboratory Biosafety Manual 4th Edition
+
+OBJECTIF
+Garantir la sécurité du personnel et prévenir la contamination lors des manipulations biologiques.
+
+NIVEAUX DE CONFINEMENT BIOLOGIQUE
+BSL-1 : Agents non pathogènes (E. coli K12)
+BSL-2 : Agents à risque modéré (la plupart des échantillons humains)
+BSL-3 : Agents à risque élevé (M. tuberculosis)
+BSL-4 : Agents mortels sans traitement
+
+ÉQUIPEMENTS DE PROTECTION INDIVIDUELLE (EPI)
+Obligatoires BSL-2 :
+- Blouse de laboratoire fermée
+- Gants en nitrile (changer entre chaque manipulation)
+- Lunettes de protection
+- Chaussures fermées
+
+Pour aérosols/volatils :
+- Masque FFP2/N95
+- Hotte à flux laminaire
+
+RÈGLES GÉNÉRALES
+1. Interdiction de manger, boire, fumer en laboratoire
+2. Lavage des mains obligatoire avant/après manipulation
+3. Ne jamais pipeter à la bouche
+4. Décontamination systématique des surfaces
+5. Gestion rigoureuse des déchets biologiques
+
+GESTION DES DÉCHETS BIOLOGIQUES
+- Déchets solides contaminés : sacs autoclave jaunes
+- Liquides contaminés : décontamination avant rejet
+- Objets piquants/tranchants : conteneurs rigides sharps
+- Autoclavage : 121°C / 20 min / 1 bar
+
+DÉCONTAMINATION
+Surfaces de travail :
+- Éthanol 70% avant et après manipulation
+- Javel 10% pour contaminations importantes
+- UV 15 min pour hottes
+
+En cas d'accident :
+- Projection cutanée : rinçage eau 15 min
+- Projection oculaire : rinçage eau 15 min, consulter médecin
+- Piqûre : rincer, déclarer accident travail
+
+STOCKAGE DES RÉACTIFS
+- Produits inflammables : armoire ventilée agréée
+- Produits corrosifs : armoire résistante aux acides
+- Température contrôlée : enregistrement continu
+- Inventaire mis à jour mensuellement

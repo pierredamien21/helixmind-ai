@@ -1,0 +1,45 @@
+SOP-002 : PCR Standard pour Amplification Génomique
+Version : 2.1 | Approuvé par : Comité Scientifique Global Biotek
+
+OBJECTIF
+Amplifier des régions spécifiques d'ADN par réaction en chaîne par polymérase (PCR).
+
+MATÉRIEL REQUIS
+- Thermocycleur calibré
+- Master Mix Taq Polymérase 2X
+- Amorces spécifiques (Forward et Reverse)
+- ADN template purifié
+- Eau ultra-pure DNase/RNase free
+- Tubes PCR 0.2mL
+
+COMPOSITION DU MIX PCR (Volume final 25 µL)
+- 12.5 µL Master Mix 2X
+- 1 µL Amorce Forward (10 µM)
+- 1 µL Amorce Reverse (10 µM)
+- 1 µL ADN template (10-50 ng)
+- 9.5 µL eau ultra-pure
+
+PROGRAMME THERMOCYCLEUR
+1. Dénaturation initiale : 95°C / 3 min
+2. 35 cycles :
+   - Dénaturation : 95°C / 30 secondes
+   - Hybridation : 60°C / 30 secondes
+   - Extension : 72°C / 1 min par kb
+3. Extension finale : 72°C / 5 min
+4. Conservation : 4°C indéfini
+
+VÉRIFICATION DES RÉSULTATS
+- Électrophorèse sur gel agarose 1.5%
+- Tampon TAE 1X
+- BET ou SYBR Safe pour visualisation
+- Marqueur de taille approprié
+
+CRITÈRES DE QUALITÉ
+- Bande unique à la taille attendue
+- Absence de bandes non spécifiques
+- Contrôle négatif sans amplification
+- Contrôle positif avec amplification
+
+STOCKAGE
+- Produits PCR : -20°C jusqu'à 6 mois
+- Amorces : -20°C, éviter cycles congélation/décongélation

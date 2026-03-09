@@ -1,0 +1,50 @@
+SOP-005 : Alignement sur Génome de Référence
+Version : 2.2 | Référence : GATK Best Practices - Data Pre-processing
+
+OBJECTIF
+Aligner les reads séquencés sur le génome de référence humain GRCh38/hg38.
+
+GÉNOME DE RÉFÉRENCE
+- Version recommandée : GRCh38.p14 (hg38)
+- Source : UCSC Genome Browser / Ensembl / NCBI
+- Fichier : Homo_sapiens.GRCh38.dna.primary_assembly.fa
+- Index BWA requis avant alignement
+
+OUTIL : BWA-MEM2 (recommandé) ou BWA-MEM
+
+COMMANDES
+
+Étape 1 - Indexation du génome (une seule fois)
+bwa-mem2 index reference.fa
+
+Étape 2 - Alignement
+bwa-mem2 mem -t 8 -R "@RG\tID:sample\tSM:sample\tPL:ILLUMINA" \
+  reference.fa read1.fastq.gz read2.fastq.gz | \
+  samtools sort -o aligned.bam
+
+Étape 3 - Indexation du BAM
+samtools index aligned.bam
+
+Étape 4 - Marquage des duplicats (Picard/GATK)
+gatk MarkDuplicates \
+  -I aligned.bam \
+  -O marked_duplicates.bam \
+  -M metrics.txt
+
+Étape 5 - Recalibration des scores qualité (BQSR)
+gatk BaseRecalibrator \
+  -I marked_duplicates.bam \
+  -R reference.fa \
+  --known-sites dbsnp.vcf.gz \
+  -O recal_data.table
+
+MÉTRIQUES DE QUALITÉ ACCEPTABLES
+- Taux de mapping : > 95%
+- Couverture moyenne : > 30x (WGS) / > 100x (WES)
+- Taux de duplicats : < 20%
+- % bases > Q20 : > 90%
+
+FICHIERS DE SORTIE
+- BAM aligné et trié
+- Index BAI
+- Rapport de métriques d'alignement
