@@ -17,6 +17,8 @@ jsonpointer==3.0.0
 langchain==0.2.16
 langchain-core==0.2.43
 langchain-text-splitters==0.2.4
+langchain-huggingface==0.0.3
+langchain-chroma==0.1.2
 langsmith==0.1.147
 multidict==6.7.1
 numpy==1.26.4
@@ -35,3 +37,12 @@ typing_extensions==4.15.0
 urllib3==2.6.3
 yarl==1.23.0
 uvicorn
+fastapi
+python-multipart
+chromadb
+sentence-transformers
+reportlab
+pypdf
+python-docx
+groq
+python-dotenv
