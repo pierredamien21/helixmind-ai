@@ -1,5 +1,5 @@
 --only-binary :all:
-tokenizers==0.19.1
+tokenizers==0.20.4rc0  # ou 0.21.0, 0.22.2, etc.
 aiohappyeyeballs==2.6.1
 aiohttp==3.13.3
 aiosignal==1.4.0
