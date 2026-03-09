@@ -1,0 +1,80 @@
+GUIDE D'INTERPRÉTATION DES FICHIERS VCF
+Version : 1.5 | Référence : VCF Specification v4.3 + ACMG Guidelines
+
+OBJECTIF
+Comprendre et interpréter le format VCF (Variant Call Format) pour l'analyse génomique clinique.
+
+STRUCTURE D'UN FICHIER VCF
+
+Section Header (lignes commençant par ##)
+##fileformat=VCFv4.3
+##FILTER=<ID=PASS,Description="All filters passed">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM POS ID REF ALT QUAL FILTER INFO FORMAT SAMPLE
+
+Colonnes obligatoires :
+1. CHROM : Chromosome (chr1-chr22, chrX, chrY, chrM)
+2. POS : Position (1-based)
+3. ID : Identifiant (rsID si connu, sinon .)
+4. REF : Allèle de référence
+5. ALT : Allèle(s) alternatif(s)
+6. QUAL : Score qualité Phred (-10 log10 P(erreur))
+7. FILTER : PASS ou raison de filtrage
+8. INFO : Informations supplémentaires
+9. FORMAT : Format des données génotype
+10. SAMPLE : Données spécifiques à l'échantillon
+
+INTERPRÉTATION DU GÉNOTYPE (GT)
+0/0 : Homozygote référence (normal)
+0/1 : Hétérozygote (une copie mutée)
+1/1 : Homozygote alternatif (deux copies mutées)
+0/2 : Hétérozygote pour second allèle alternatif
+./. : Génotype non déterminé
+
+SCORES DE QUALITÉ
+QUAL > 100 : Haute confiance
+QUAL 50-100 : Confiance modérée
+QUAL < 50 : Faible confiance, vérification manuelle
+
+CHAMPS INFO IMPORTANTS
+AF : Fréquence allélique
+DP : Profondeur totale de couverture
+MQ : Qualité de mapping moyenne
+QD : Quality by Depth (QUAL/DP)
+FS : FisherStrand bias
+SOR : StrandOddsRatio
+
+CLASSIFICATION CLINIQUE DES VARIANTS
+Classe 1 - Bénin
+Classe 2 - Probablement Bénin
+Classe 3 - Variant de Signification Incertaine (VUS)
+Classe 4 - Probablement Pathogène
+Classe 5 - Pathogène
+
+CRITÈRES ACMG DE PATHOGÉNICITÉ
+Très forte (PVSt1) :
+- Variant perte de fonction dans gène LOF établi
+
+Forte (PS1-PS4) :
+- Même variant AA que variant pathogène connu
+- Prévalence augmentée chez patients
+
+Modérée (PM1-PM6) :
+- Dans hotspot mutationnel
+- Absent des contrôles
+
+Supportive (PP1-PP5) :
+- Coségréation avec maladie
+- Variant pathogène reporté dans bases fiables
+
+RAPPORT CLINIQUE MINIMUM
+1. Identité patient (anonymisé)
+2. Date analyse
+3. Méthode utilisée
+4. Génome référence
+5. Variants identifiés avec classification
+6. Interprétation clinique
+7. Recommandations
+8. Limites de l'analyse
+9. Signature biologiste responsable

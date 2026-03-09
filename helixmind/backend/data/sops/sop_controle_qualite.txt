@@ -1,0 +1,54 @@
+SOP-004 : Contrôle Qualité des Données NGS (FastQC)
+Version : 2.0 | Référence : Babraham Bioinformatics Guidelines
+
+OBJECTIF
+Évaluer la qualité des données de séquençage brutes avant toute analyse bioinformatique.
+
+OUTIL PRINCIPAL : FastQC v0.11.9+
+
+MÉTRIQUES ÉVALUÉES
+
+1. QUALITÉ PAR BASE (Per Base Sequence Quality)
+- Score Phred moyen par position
+- Acceptable : Q > 28 sur toute la longueur
+- Bon : Q > 30 sur toute la longueur
+- Excellent : Q > 35
+
+2. SCORE QUALITÉ PAR SÉQUENCE
+- Distribution des scores moyens
+- Pic principal > Q30 requis
+
+3. CONTENU EN BASES PAR POSITION
+- %A, %T, %G, %C par position
+- Doit être stable après les 10 premières bases
+
+4. CONTENU GC
+- Attendu : 40-60% selon l'organisme
+- Humain : ~42%
+- Distribution bimodale = contamination
+
+5. CONTENU EN N
+- Bases non identifiées
+- Acceptable : < 5%
+
+6. DISTRIBUTION DE LA LONGUEUR
+- Doit correspondre à la longueur attendue
+- Variation acceptable : ±10%
+
+7. SÉQUENCES DUPLIQUÉES
+- < 20% pour génome entier
+- < 50% pour amplicon
+
+8. SÉQUENCES SURREPRÉSENTÉES
+- Adaptateurs, vecteurs, contaminations
+- Doivent être < 0.1%
+
+INTERPRÉTATION DES RÉSULTATS
+PASS (Vert) : Paramètre dans les normes
+WARN (Orange) : Attention, vérification nécessaire
+FAIL (Rouge) : Action corrective requise
+
+ACTIONS CORRECTIVES
+- Mauvaise qualité en 3' : Trimming avec Trimmomatic
+- Contamination adaptateurs : Cutadapt
+- Contamination : Vérification source échantillon

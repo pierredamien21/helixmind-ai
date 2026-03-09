@@ -1,0 +1,58 @@
+SOP-009 : Stockage et Conservation des Échantillons Biologiques
+Version : 2.3 | Référence : ISBER Best Practices 2018
+
+OBJECTIF
+Assurer l'intégrité et la traçabilité des échantillons biologiques pour analyses génomiques.
+
+TYPES D'ÉCHANTILLONS ET CONDITIONS
+
+Sang total :
+- Court terme (< 72h) : 4°C
+- Long terme : -80°C avec EDTA
+- Tube recommandé : EDTA violet
+
+ADN extrait :
+- Court terme (< 1 mois) : 4°C dans TE buffer
+- Long terme : -20°C ou -80°C
+- Éviter cycles congélation/décongélation > 5x
+- Concentration recommandée : 50-100 ng/µL
+
+ARN extrait :
+- Très instable - travailler vite
+- Conservation : -80°C obligatoire
+- RNAlater pour stabilisation initiale
+- Éviter toute contamination ARNase
+
+Tissus frais :
+- Congélation immédiate dans azote liquide
+- Conservation : -80°C
+- FFPE pour histologie : température ambiante
+
+SYSTÈME DE TRAÇABILITÉ
+Chaque échantillon doit avoir :
+- Identifiant unique (code-barres)
+- Date de prélèvement
+- Type d'échantillon
+- Conditions de collecte
+- Identité opérateur
+- Localisation dans biobanque
+
+CONTRÔLE QUALITÉ À LA RÉCEPTION
+1. Vérification température transport
+2. Inspection visuelle (hémolyse, turbidité)
+3. Mesure concentration (NanoDrop/Qubit)
+4. Évaluation intégrité (gel ou Bioanalyzer)
+5. Enregistrement dans LIMS
+
+CRITÈRES D'ACCEPTATION ADN
+- Concentration > 20 ng/µL
+- Ratio A260/A280 : 1.8 - 2.0
+- Ratio A260/A230 : 2.0 - 2.2
+- Intégrité > 7 (DIN score)
+
+PROCÉDURE DE DÉCONGÉLATION
+1. Sortir du congélateur
+2. Décongeler sur glace (jamais à température ambiante)
+3. Vortexer brièvement
+4. Centrifuger 2000 rpm / 2 min
+5. Utiliser immédiatement ou remettre sur glace

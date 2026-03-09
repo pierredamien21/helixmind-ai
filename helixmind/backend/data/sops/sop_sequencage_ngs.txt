@@ -1,0 +1,45 @@
+SOP-003 : Séquençage Nouvelle Génération (NGS)
+Version : 3.0 | Référence : GATK Best Practices 2024
+
+OBJECTIF
+Préparer et séquencer des bibliothèques ADN sur plateforme Illumina pour analyse génomique complète.
+
+PRINCIPE
+Le séquençage NGS permet de séquencer simultanément des millions de fragments d'ADN, produisant des fichiers FASTQ contenant les séquences brutes et leurs scores de qualité Phred.
+
+PRÉPARATION DE LA BIBLIOTHÈQUE
+Étape 1 - Fragmentation
+- Fragmentation mécanique (sonication) ou enzymatique
+- Taille cible des fragments : 300-500 pb
+- Vérification sur Bioanalyzer ou TapeStation
+
+Étape 2 - Réparation des extrémités
+- Réparation des extrémités 5' et 3'
+- Addition d'une adénine en 3' (A-tailing)
+- Température : 20°C / 30 min puis 65°C / 30 min
+
+Étape 3 - Ligation des adaptateurs
+- Ligation des adaptateurs Illumina indexés
+- Ratio adaptateur/insert : 10:1
+- 16°C / 16 heures ou 20°C / 15 min (ligase rapide)
+
+Étape 4 - Amplification PCR
+- 6-8 cycles PCR pour enrichissement
+- Utiliser polymérase haute fidélité
+
+PARAMÈTRES DE SÉQUENÇAGE
+- Plateforme : Illumina NovaSeq 6000 / NextSeq 550
+- Mode : Paired-end 150pb
+- Profondeur cible : 30x (génome entier) / 100x (exome)
+- Qualité minimale : Q30 > 80%
+
+FICHIERS DE SORTIE
+- Format FASTQ (R1 et R2 pour paired-end)
+- Rapport MultiQC de qualité
+- Fichier SampleSheet pour démultiplexage
+
+CRITÈRES DE QUALITÉ
+- Score Q30 > 80%
+- Cluster density : 800-1000 K/mm²
+- % PF (Passing Filter) > 85%
+- Taux de duplication < 20%

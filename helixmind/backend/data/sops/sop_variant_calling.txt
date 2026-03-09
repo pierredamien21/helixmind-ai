@@ -1,0 +1,55 @@
+SOP-006 : Détection de Variants (Variant Calling)
+Version : 3.1 | Référence : GATK HaplotypeCaller Best Practices
+
+OBJECTIF
+Identifier les variants génétiques (SNPs, InDels) à partir des données d'alignement BAM.
+
+OUTIL PRINCIPAL : GATK HaplotypeCaller v4.4+
+
+TYPES DE VARIANTS DÉTECTÉS
+- SNPs (Single Nucleotide Polymorphisms)
+- Insertions et délétions courtes (InDels < 50pb)
+- MNPs (Multi-Nucleotide Polymorphisms)
+
+PIPELINE VARIANT CALLING
+
+Étape 1 - HaplotypeCaller (par échantillon)
+gatk HaplotypeCaller \
+  -R reference.fa \
+  -I recalibrated.bam \
+  -O sample.g.vcf.gz \
+  -ERC GVCF \
+  --dbsnp dbsnp.vcf.gz
+
+Étape 2 - Génotypage combiné (cohorte)
+gatk GenotypeGVCFs \
+  -R reference.fa \
+  -V sample.g.vcf.gz \
+  -O raw_variants.vcf.gz
+
+Étape 3 - Filtrage VQSR (SNPs)
+gatk VariantRecalibrator \
+  -V raw_variants.vcf.gz \
+  --resource:hapmap hapmap.vcf.gz \
+  --resource:dbsnp dbsnp.vcf.gz \
+  -an QD -an MQ -an FS \
+  -mode SNP \
+  -O snp.recal
+
+CRITÈRES DE QUALITÉ DES VARIANTS
+- QD (Quality by Depth) > 2.0
+- FS (FisherStrand) < 60.0
+- MQ (RMSMappingQuality) > 40.0
+- MQRankSum > -12.5
+- ReadPosRankSum > -8.0
+- Profondeur minimale : 10x
+
+FORMAT VCF DE SORTIE
+- CHROM : Chromosome
+- POS : Position génomique
+- REF : Allèle de référence
+- ALT : Allèle alternatif
+- QUAL : Score de qualité Phred
+- FILTER : PASS ou raison de filtrage
+- INFO : Informations supplémentaires
+- FORMAT : GT:AD:DP:GQ:PL

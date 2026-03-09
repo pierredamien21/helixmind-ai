@@ -1,0 +1,58 @@
+SOP-007 : Annotation des Variants
+Version : 2.0 | Référence : ACMG Guidelines 2023
+
+OBJECTIF
+Annoter les variants détectés avec leur signification clinique et leur impact biologique.
+
+OUTILS D'ANNOTATION
+- SnpEff : Impact fonctionnel
+- VEP (Variant Effect Predictor) : Annotation complète
+- ANNOVAR : Bases de données multiples
+
+BASES DE DONNÉES UTILISÉES
+
+1. ClinVar (NCBI)
+- Signification clinique des variants
+- Classifications : Pathogenic, Likely Pathogenic, VUS, Likely Benign, Benign
+
+2. dbSNP
+- Identifiants rsID
+- Fréquences alléliques populationnelles
+
+3. gnomAD
+- Fréquences dans population générale
+- Variant rare si AF < 0.01
+
+4. OMIM
+- Maladies génétiques associées
+
+5. UniProt
+- Impact sur la protéine
+
+CLASSIFICATION ACMG DES VARIANTS
+Selon les guidelines ACMG/AMP 2015 :
+
+Pathogène (5 étoiles) :
+- Évidence très forte de pathogénicité
+- Fréquence très basse dans population saine
+- Corrélation phénotype-génotype établie
+
+Probablement Pathogène :
+- Évidence forte mais incomplète
+
+Variant de Signification Incertaine (VUS) :
+- Preuves contradictoires
+- Données insuffisantes
+
+Probablement Bénin / Bénin :
+- Fréquence élevée population générale
+- Aucune corrélation pathologique
+
+RAPPORT D'ANNOTATION
+Chaque variant annoté doit inclure :
+- Gène affecté et transcript
+- Type de mutation (missense, nonsense, frameshift)
+- Impact prédit (HIGH/MODERATE/LOW/MODIFIER)
+- Fréquence populationnelle
+- Signification clinique ClinVar
+- Score de pathogénicité (CADD, SIFT, PolyPhen-2)
