@@ -9,7 +9,7 @@ from langchain_community.document_loaders import (
     Docx2txtLoader,
     DirectoryLoader
 )
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from rag.embeddings import get_embeddings
 from config import settings
