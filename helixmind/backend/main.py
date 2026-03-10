@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from config import settings
@@ -13,14 +14,21 @@ from rag.retriever import ask
 from rag.ingestor import ingest_documents
 from pipeline.tasks import run_pipeline, get_job_status
 
-# Ajoute ces imports en haut de main.py
-from fastapi.middleware.cors import CORSMiddleware
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 Démarrage HelixMind AI...")
-    ingest_documents()
+    # Ingestion en arrière-plan pour ne pas bloquer le démarrage
+    if not os.getenv("DISABLE_STARTUP_INGEST"):
+        print("📂 Lancement ingestion en arrière-plan...")
+        thread = threading.Thread(target=ingest_documents)
+        thread.daemon = True
+        thread.start()
+    else:
+        print("⏭️ Ingestion désactivée au démarrage")
     yield
     print("👋 Arrêt du serveur")
+
 
 app = FastAPI(
     title="HelixMind AI",
@@ -46,6 +54,7 @@ class ChatResponse(BaseModel):
     answer: str
     sources: list[str]
 
+
 # ── ROUTES GÉNÉRALES ──
 @app.get("/")
 def home():
@@ -57,6 +66,7 @@ def health_check():
         "api_key_loaded": bool(settings.GROQ_API_KEY),
         "message": "Clé trouvée ✅" if settings.GROQ_API_KEY else "Clé manquante ❌"
     }
+
 
 # ── ROUTES RAG ──
 @app.post("/ingest")
@@ -72,6 +82,7 @@ def chat(request: ChatRequest):
         raise HTTPException(status_code=400, detail="La question ne peut pas être vide")
     result = ask(request.question)
     return ChatResponse(**result)
+
 
 # ── ROUTES PIPELINE ADN ──
 @app.post("/pipeline/upload")
