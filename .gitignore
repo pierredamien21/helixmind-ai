@@ -5,10 +5,21 @@
 __pycache__/
 *.pyc
 *.pyo
+.venv/
 
 # ChromaDB - généré automatiquement au démarrage
 helixmind/backend/data/chroma_db/
+.chroma/
+*.db
 
-# Données brutes et traitées
+# Données brutes et traitées (pipeline ADN)
 helixmind/backend/data/raw/
 helixmind/backend/data/processed/
+
+# Données scrapées automatiquement (générées au démarrage)
+helixmind/backend/data/sops/pubmed_*.txt
+helixmind/backend/data/sops/clinvar_*.txt
+helixmind/backend/data/sops/biorxiv_*.txt
+
+# Logs
+*.log

@@ -1,6 +1,27 @@
+
+t
 .env
+
+
 __pycache__/
 *.pyc
+*.pyo
+.venv/
+
+
 .chroma/
 *.db
+chroma_db/
+
+
+helixmind/backend/data/sops/pubmed_*.txt
+helixmind/backend/data/sops/clinvar_*.txt
+helixmind/backend/data/sops/biorxiv_*.txt
+
+
+helixmind/backend/data/raw/
+helixmind/backend/data/processed/
+
+# Logs
+*.log
 EOF

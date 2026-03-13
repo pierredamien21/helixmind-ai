@@ -13,11 +13,13 @@ from config import settings
 from rag.retriever import ask
 from rag.ingestor import ingest_documents
 from pipeline.tasks import run_pipeline, get_job_status
+from scraper.scheduler import start_scheduler, run_all_scrapers, scraper_status
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 Démarrage HelixMind AI...")
+
     # Ingestion en arrière-plan pour ne pas bloquer le démarrage
     if not os.getenv("DISABLE_STARTUP_INGEST"):
         print("📂 Lancement ingestion en arrière-plan...")
@@ -26,6 +28,15 @@ async def lifespan(app: FastAPI):
         thread.start()
     else:
         print("⏭️ Ingestion désactivée au démarrage")
+
+    # Scraping automatique toutes les 24h
+    if not os.getenv("DISABLE_SCRAPING"):
+        from pathlib import Path
+        sops_dir = Path(settings.SOPS_PATH)
+        start_scheduler(sops_dir)
+    else:
+        print("⏭️ Scraping désactivé")
+
     yield
     print("👋 Arrêt du serveur")
 
@@ -82,6 +93,28 @@ def chat(request: ChatRequest):
         raise HTTPException(status_code=400, detail="La question ne peut pas être vide")
     result = ask(request.question)
     return ChatResponse(**result)
+
+
+# ── ROUTES SCRAPER ──
+@app.get("/scraper/status")
+def get_scraper_status():
+    """Voir l'état du dernier scraping et l'heure du prochain."""
+    return scraper_status
+
+@app.post("/scraper/run")
+def run_scraper_now():
+    """Forcer un scraping immédiat sans attendre les 24h."""
+    if scraper_status["running"]:
+        raise HTTPException(status_code=409, detail="Scraping déjà en cours ⏳")
+    from pathlib import Path
+    sops_dir = Path(settings.SOPS_PATH)
+    thread = threading.Thread(
+        target=run_all_scrapers,
+        args=(sops_dir,),
+        daemon=True
+    )
+    thread.start()
+    return {"message": "Scraping lancé en arrière-plan 🚀"}
 
 
 # ── ROUTES PIPELINE ADN ──
